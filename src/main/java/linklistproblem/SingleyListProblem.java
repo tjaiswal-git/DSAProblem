@@ -52,7 +52,7 @@ public class SingleyListProblem {
      *
      * @param value is the element which you want to insert in list
      */
-    private void insertFirst(int value) {
+    private void insertAtFirst(int value) {
         ListNode newNode = new ListNode(value);
         newNode.next = head;
         head = newNode;
@@ -62,6 +62,9 @@ public class SingleyListProblem {
 
     /**
      * this method is used for insertion element in last(head=null)
+     * Note:
+     * time complexity of insertAtLast is O(n)
+     * space complexity of insertAtLast is O(n)
      *
      * @param value is the element which you want to insert in list
      */
@@ -79,6 +82,27 @@ public class SingleyListProblem {
         System.out.println("element is inserted " + value + " at end of linklist");
     }
 
+    /**
+     * this method is used for search a element in linklist
+     * Note:
+     * time complexity of searchElement is O(n) in worst case
+     *
+     * @param searchKey ,to search a key
+     * @return based on the search operation true or false
+     */
+    private boolean searchElement(int searchKey) {
+        ListNode current = head;
+        while (current != null) {
+            if (current.data == searchKey) {
+                System.out.println("Search key is found " + searchKey);
+                return true;
+            }
+            current = current.next;
+        }
+        System.out.println("search key is not found " + searchKey);
+        return false;
+    }
+
     public static void main(String[] args) {
         SingleyListProblem singleyListProblem = new SingleyListProblem();
         singleyListProblem.head = new ListNode(10);
@@ -94,8 +118,8 @@ public class SingleyListProblem {
         singleyListProblem.display();
         System.out.println("length of singly linklist " + singleyListProblem.length());
 
-        singleyListProblem.insertFirst(50);
-        singleyListProblem.insertFirst(60);
+        singleyListProblem.insertAtFirst(50);
+        singleyListProblem.insertAtFirst(60);
         singleyListProblem.display();
         System.out.println("length of singly linklist " + singleyListProblem.length());
 
@@ -106,5 +130,8 @@ public class SingleyListProblem {
         singleyListProblem.insertAtLast(80);
         singleyListProblem.display();
         System.out.println("length of singly linklist " + singleyListProblem.length());
+
+        System.out.println(singleyListProblem.searchElement(30));
+        System.out.println(singleyListProblem.searchElement(1000));
     }
 }
