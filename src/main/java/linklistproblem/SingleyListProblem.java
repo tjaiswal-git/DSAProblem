@@ -86,6 +86,7 @@ public class SingleyListProblem {
      * this method is used for search a element in linklist
      * Note:
      * time complexity of searchElement is O(n) in worst case
+     * space complexity of insertAtLast is O(1)
      *
      * @param searchKey ,to search a key
      * @return based on the search operation true or false
@@ -101,6 +102,30 @@ public class SingleyListProblem {
         }
         System.out.println("search key is not found " + searchKey);
         return false;
+    }
+
+    /**
+     * this method is used to reverse a linklist
+     * Note:
+     * time complexity of reverse is O(n) in worst case
+     * space complexity of reverse is O(1)
+     *
+     * @return reverse list
+     */
+    private ListNode reverse() {
+        if (head == null) {
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        ListNode next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        return previous;
     }
 
     public static void main(String[] args) {
@@ -133,5 +158,10 @@ public class SingleyListProblem {
 
         System.out.println(singleyListProblem.searchElement(30));
         System.out.println(singleyListProblem.searchElement(1000));
+
+        ListNode reverseList = singleyListProblem.reverse();
+        singleyListProblem.head = reverseList;
+        System.out.println("==============reverse list===========");
+        singleyListProblem.display();
     }
 }
