@@ -149,6 +149,39 @@ public class SingleyListProblem {
         return slowPtr;
     }
 
+    /**
+     * this method is used to search nth element from last
+     * @param nthElement ,for nth element search from last
+     * @return nth node from last
+     *  Note:
+     *  time complexity of getMiddleElement is O(n)
+     *  space complexity of getMiddleElement is O(1)
+     */
+    private ListNode getNthElementFromLast(int nthElement) {
+        if (head == null) {
+            return head;
+        }
+        if (nthElement <= 0) {
+            throw new IllegalArgumentException("Invalid value :" + nthElement);
+        }
+        ListNode mainPtr = head;
+        ListNode refPtr = head;
+        int count = 0;
+        while (count < nthElement) {
+            if (refPtr == null) {
+                throw new IllegalArgumentException(nthElement + " is greater then the number of node in list");
+            }
+            refPtr = refPtr.next;
+            count++;
+
+        }
+        while (refPtr != null) {
+            refPtr = refPtr.next;
+            mainPtr = mainPtr.next;
+        }
+        return mainPtr;
+    }
+
     public static void main(String[] args) {
         SingleyListProblem singleyListProblem = new SingleyListProblem();
         singleyListProblem.head = new ListNode(10);
@@ -187,5 +220,7 @@ public class SingleyListProblem {
         singleyListProblem.display();
 
         System.out.println("Middle element: " + singleyListProblem.getMiddleNode().data);
+
+        System.out.println("nth element from last is " + singleyListProblem.getNthElementFromLast(2).data);
     }
 }
