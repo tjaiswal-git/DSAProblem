@@ -128,6 +128,27 @@ public class SingleyListProblem {
         return previous;
     }
 
+    /**
+     * this method is used for getting element element of linklist
+     *
+     * @return slowptr node
+     * Note:
+     * time complexity of getMiddleElement is O(n)
+     * space complexity of getMiddleElement is O(1)
+     */
+    private ListNode getMiddleNode() {
+        if (head == null) {
+            return head;
+        }
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+        while (fastPtr != null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        return slowPtr;
+    }
+
     public static void main(String[] args) {
         SingleyListProblem singleyListProblem = new SingleyListProblem();
         singleyListProblem.head = new ListNode(10);
@@ -145,6 +166,7 @@ public class SingleyListProblem {
 
         singleyListProblem.insertAtFirst(50);
         singleyListProblem.insertAtFirst(60);
+        singleyListProblem.insertAtLast(90);
         singleyListProblem.display();
         System.out.println("length of singly linklist " + singleyListProblem.length());
 
@@ -163,5 +185,7 @@ public class SingleyListProblem {
         singleyListProblem.head = reverseList;
         System.out.println("==============reverse list===========");
         singleyListProblem.display();
+
+        System.out.println("Middle element: " + singleyListProblem.getMiddleNode().data);
     }
 }
