@@ -151,11 +151,12 @@ public class SingleyListProblem {
 
     /**
      * this method is used to search nth element from last
+     *
      * @param nthElement ,for nth element search from last
      * @return nth node from last
-     *  Note:
-     *  time complexity of getMiddleElement is O(n)
-     *  space complexity of getMiddleElement is O(1)
+     * Note:
+     * time complexity of getMiddleElement is O(n)
+     * space complexity of getMiddleElement is O(1)
      */
     private ListNode getNthElementFromLast(int nthElement) {
         if (head == null) {
@@ -180,6 +181,42 @@ public class SingleyListProblem {
             mainPtr = mainPtr.next;
         }
         return mainPtr;
+    }
+
+    /**
+     * this method is used for to delete entire list node
+     *
+     * @return true
+     */
+    private boolean removeList() {
+        if (head != null) {
+            head = null;
+            return true;
+        }
+        return true;
+    }
+
+    /**
+     * this method is used for remove duplicates element from sorted list
+     */
+    private void removeDuplicatsFromSortedList() {
+        if (head == null) {
+            return;
+        }
+        ListNode current = head;
+        int count = 0;
+        while (current != null && current.next != null) {
+            if (current.data == current.next.data) {
+                count++;
+                current.next = current.next.next;
+                System.out.println("Found duplicate element " + current.data);
+            } else {
+                current = current.next;
+            }
+        }
+        if (count > 0) {
+            System.out.println("Total duplicate element is removed " + count);
+        }
     }
 
     public static void main(String[] args) {
@@ -222,5 +259,24 @@ public class SingleyListProblem {
         System.out.println("Middle element: " + singleyListProblem.getMiddleNode().data);
 
         System.out.println("nth element from last is " + singleyListProblem.getNthElementFromLast(2).data);
+
+        singleyListProblem.insertAtFirst(60);
+        singleyListProblem.insertAtFirst(80);
+        singleyListProblem.display();
+        System.out.println(singleyListProblem.removeList());
+        singleyListProblem.display();
+
+        // for making a sorted list
+        singleyListProblem.insertAtFirst(40);
+        singleyListProblem.insertAtFirst(30);
+        singleyListProblem.insertAtFirst(30);
+        singleyListProblem.insertAtFirst(20);
+        singleyListProblem.insertAtFirst(20);
+        singleyListProblem.insertAtFirst(10);
+        singleyListProblem.display();
+
+        singleyListProblem.removeDuplicatsFromSortedList();
+        System.out.println("sorted list with no dulicates element \n");
+        singleyListProblem.display();
     }
 }
