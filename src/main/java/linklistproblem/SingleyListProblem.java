@@ -279,6 +279,44 @@ public class SingleyListProblem {
         }
     }
 
+    /**
+     * this method is used for to check for list has connected with loop
+     *
+     * @return check whether list has loop or not
+     */
+    private boolean containsLoop() {
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+        while (fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+            if (slowPtr == fastPtr) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * this method is used for to make a list as loop
+     */
+    private void createALoopInList() {
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode forth = new ListNode(4);
+        ListNode five = new ListNode(5);
+        ListNode sixth = new ListNode(6);
+        head = first;
+        first.next = second;
+        second.next = third;
+        third.next = forth;
+        forth.next = five;
+        five.next = sixth;
+        sixth.next = third;
+    }
+
+
     public static void main(String[] args) {
         SingleyListProblem singleyListProblem = new SingleyListProblem();
         singleyListProblem.head = new ListNode(10);
@@ -345,5 +383,10 @@ public class SingleyListProblem {
 
         singleyListProblem.removeElementInSortedList(30);
         singleyListProblem.display();
+
+        //singleyListProblem.removeList();
+
+        singleyListProblem.createALoopInList();
+        System.out.println("Status of loop " + singleyListProblem.containsLoop());
     }
 }
