@@ -386,6 +386,7 @@ public class SingleyListProblem {
 
         //singleyListProblem.removeList();
 
+        System.out.println("creating a loop in singly list ");
         singleyListProblem.createALoopInList();
         System.out.println("Status of loop " + singleyListProblem.containsLoop());
     }
