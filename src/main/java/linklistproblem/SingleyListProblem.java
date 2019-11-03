@@ -200,11 +200,11 @@ public class SingleyListProblem {
      * this method is used for remove duplicates element from sorted list
      */
     private void removeDuplicatsFromSortedList() {
+        ListNode current = head;
+        int count = 0;
         if (head == null) {
             return;
         }
-        ListNode current = head;
-        int count = 0;
         while (current != null && current.next != null) {
             if (current.data == current.next.data) {
                 count++;
@@ -216,6 +216,66 @@ public class SingleyListProblem {
         }
         if (count > 0) {
             System.out.println("Total duplicate element is removed " + count);
+        } else {
+            System.out.println("No duplicate element found ..");
+        }
+    }
+
+    /**
+     * this method is used to insert element in sorted list
+     *
+     * @param value insert element
+     * @return newlist
+     */
+    private ListNode insertElementInSortedList(int value) {
+        ListNode newNode = new ListNode(value);
+        if (head == null) {
+            head = newNode;
+            return head;
+        }
+        ListNode current = head;
+        ListNode temp = null;
+        while (current != null && current.data < newNode.data) {
+            temp = current;
+            current = current.next;
+        }
+        newNode.next = current;
+        temp.next = newNode;
+        return head;
+    }
+
+    /**
+     * this method is used to remove element in sorted list
+     *
+     * @param key element want to remove
+     */
+    private void removeElementInSortedList(int key) {
+
+        ListNode current = head;
+        ListNode temp = null;
+        int count = 0;
+        if (current != null && current.data == key) {
+            head = current.next;
+            return;
+        }
+        while (current != null && current.data != key) {
+            temp = current;
+            current = current.next;
+        }
+        if (current == null) {
+            return;
+        }
+        //if element is found then we assigned current.next node to temp.next node
+        temp.next = current.next;
+        count++;
+        getResultCount(count);
+    }
+
+    private void getResultCount(int count) {
+        if (count > 0) {
+            System.out.println("Found element " + count + " in times");
+        } else {
+            System.out.println("No element found..!!");
         }
     }
 
@@ -277,6 +337,13 @@ public class SingleyListProblem {
 
         singleyListProblem.removeDuplicatsFromSortedList();
         System.out.println("sorted list with no dulicates element \n");
+        singleyListProblem.display();
+
+        System.out.println("inserted element in sorted list ");
+        singleyListProblem.insertElementInSortedList(35);
+        singleyListProblem.display();
+
+        singleyListProblem.removeElementInSortedList(30);
         singleyListProblem.display();
     }
 }
